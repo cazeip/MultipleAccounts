@@ -17,11 +17,11 @@ This uncompromising tool helps you to manage multiple accounts for Discord, it i
 1. Once Discord has started, you can click on your profile picture on the bottom left corner.
 2. Click on the new button that has appeared, called "Change Account".
 
-![A picture of the bottom left menu](https://raw.githubusercontent.com/cazeip/MultipleAccounts/master/images/bottomLeft.png)
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/cazeip/MultipleAccounts/master/images/bottomLeft.png" /></div>
 
 3. A menu with your account has now appeared. Since you have not set this up yet, you have to log into your other accounts by clicking on the bottom text *"Not seeing your account? Click here to add one"*.
 
-![A picture of the accounts menu](https://raw.githubusercontent.com/cazeip/MultipleAccounts/master/images/onlyOneAccount.png)
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/cazeip/MultipleAccounts/master/images/onlyOneAccount.png" /></div>
 
 4. Enter your usual login credentials.
 

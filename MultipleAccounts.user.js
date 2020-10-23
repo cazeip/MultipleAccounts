@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord user login
 // @namespace    http://cazeip.github.io/
-// @version      1.0
+// @version      1.1
 // @description  Login into multiple accounts with Discord!
 // @author       Cazeip
 // @match        https://discord.com/*
@@ -11,7 +11,7 @@
 
 (function() {
     'use strict';
-    const v = "1.0";
+    const v = "1.1";
     const apiPrefix = "https://discord.com/api/v8";
     let allClasses = {};
     const createElm = (html) => {
@@ -74,7 +74,7 @@
             if(baseElement[0]){
                 baseElement[0].prepend(createElm(`<div class="${allClasses[6337].notice} ${allClasses[6337].colorDefault} versionNotifier"><div class="${allClasses[6337].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts has been updated to v${v}!<button id="changeLogButtonClick" class="${allClasses[6337].button}">View changes</button></div>`));
                 document.getElementById("changeLogButtonClick").onclick = () => {
-                    window.open("https://github.com/cazeip/MultipleAccounts/changes.md");
+                    window.open("https://github.com/cazeip/MultipleAccounts/blob/master/changes.md");
                     document.getElementsByClassName("versionNotifier")[0].remove();
                     localStorage.versionMA = v;
                 }
