@@ -16,10 +16,13 @@ How to use
 This uncompromising tool helps you to manage multiple accounts for Discord, it is extremely convenient when you have an account designated for your education and another dedicated for gaming 🎮.
 1. Once Discord has started, you can click on your profile picture on the bottom left corner.
 2. Click on the new button that has appeared, called "Change Account".
+
 ![A picture of the bottom left menu](https://raw.githubusercontent.com/cazeip/MultipleAccounts/master/images/bottomLeft.png)
 
 3. A menu with your account has now appeared. Since you have not set this up yet, you have to log into your other accounts by clicking on the bottom text *"Not seeing your account? Click here to add one"*.
+
 ![A picture of the accounts menu](https://raw.githubusercontent.com/cazeip/MultipleAccounts/master/images/onlyOneAccount.png)
+
 4. Enter your usual login credentials.
 
 5. Open the accounts menu. The new account should have appeared.
