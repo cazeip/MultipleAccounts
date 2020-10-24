@@ -1,7 +1,7 @@
 Changes to the MultipleAccounts Tampermonkey Script
 ===
 
-This version (1.1) provides some breakthrough features like content stability and performance enhancement. Since nothing added is visual, there are no visible changes for the user.
+This version (1.2) fixes some critical bugs that were caused by the latest Discord update. I am currently working on a automatic fixer that should remove every manual work similar to this one.
 
 I thank you for using this script, and I hope to see you here when I release a new version, don't worry, you will be notified as soon as a new version is installed on your browser.
 
