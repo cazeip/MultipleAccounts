@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord user login
 // @namespace    http://cazeip.github.io/
-// @version      1.2
+// @version      1.3
 // @description  Login into multiple accounts with Discord!
 // @author       Cazeip
 // @match        https://discord.com/*
@@ -11,14 +11,61 @@
 
 (function() {
     'use strict';
-    const v = "1.2";
+    const v = "1.3";
     const apiPrefix = "https://discord.com/api/v8";
+    let neededClasses = [];  
+    let functionKeeper = webpackJsonp[0][1];
+        
+    let classesContain = [
+        ["menu","scroller","styleFixed","styleFlexible","item","hideInteraction","customItem","labelContainer","label","subtext","iconContainer","icon","hintContainer","imageContainer","caret","image","disabled","separator","submenuContainer","submenuPaddingContainer","submenu","colorDefault","checkbox","radioSelection","check","focused","colorBrand","colorDanger","colorPremium","groupLabel"],
+        ["statusItem","status","icon","description","customStatusItem","customStatusWithEmoji","customEmoji","customEmojiPlaceholder","customText","clearStatusButton","clearStatusIcon"],
+        ["layerContainer","layer","layerHidden","disabledPointerEvents"],
+        ["backdrop","backdropWithLayer"],
+        ["backdrop","layer"],
+        ["responsiveWidthMobile","innerPadding","focusLock","root","small","medium","large","fullscreenOnMobile","footer","header","separator","content","close","hideOnFullscreen"],
+        ["artHeight","emojiSize","emojiMargin","formGroup","modalRoot","inputContainer","modalCloseButton","headerText","emojiButton","fullOpacity","emojiButtonContainer","emoji","input","clearButton","clearIcon","headerContainer","header","art","cancelButton"],
+        ["_flex","_horizontal","_horizontalReverse","flex","horizontal","horizontalReverse","flexChild","flexMarginReset"],
+        ["flex","alignStart","alignEnd","alignCenter","alignStretch","alignBaseline","justifyStart","justifyEnd","justifyCenter","justifyAround","justifyBetween","noWrap","wrap","wrapReverse","directionRow","directionRowReverse","directionColumn","spacer","vertical","horizontal","horizontalReverse","flexCenter"],
+        ["button","lookFilled","colorBrand","spinnerItem","lookInverted","lookOutlined","lookGhost","lookLink","contents","hoverBrand","hasHover","colorGrey","hoverGrey","colorRed","hoverRed","colorGreen","hoverGreen","colorYellow","hoverYellow","colorLink","hoverLink","colorWhite","hoverWhite","colorBlack","hoverBlack","colorPrimary","hoverPrimary","colorTransparent","hoverTransparent","lookBlank","sizeSmall","sizeMedium","sizeLarge","sizeXlarge","sizeMin","sizeMax","sizeIcon","grow","fullWidth","submitting","spinner","disabledButtonWrapper","disabledButtonOverlay"],
+        ["scrollerBase","thin","fade","scrolling","auto","none","content","disableScrollAnchor"],
+        ["container","downloadProgressCircle","guilds","base","sidebar","hasNotice","panels","content","activityPanel","hiddenOnMobileStore"],
+        ["notice","colorDefault","button","colorNeutral","colorDownload","colorNotification","colorDark","colorPremium","colorPremiumTier1","colorPremiumTier2","colorInfo","colorSuccess","colorDanger","colorStreamerMode","colorSpotify","platformIcon","colorBrand","colorCustom","closeButton","buttonMinor"],
+    ];
+    let ccSet = [];
+    for (let i = 0; i < classesContain.length; i++) {
+        const element = classesContain[i];
+        ccSet.push(new Set(element));
+    }
+    for (const key in functionKeeper) {
+        if (functionKeeper.hasOwnProperty(key)) {
+            const element = functionKeeper[key];
+            let ans = {};
+            element(ans);
+            ans = ans.exports;
+            if(ans != undefined || ans != null){
+                ans = Object.keys(ans);
+                ans.sort();
+                let a = new Set(ans);
+                for (let j = 0; j < ccSet.length; j++) {
+                    const element2 = ccSet[j];
+                    if(eqSet(element2, a)){
+                        neededClasses[j] = key;
+                    }
+                }
+            }
+        }
+    }
+    function eqSet(as, bs) {
+        if (as.size !== bs.size) return false;
+        for (var a of as) if (!bs.has(a)) return false;
+        return true;
+    }
     let allClasses = {};
     const createElm = (html) => {
         const temp = document.createElement('div');
         temp.innerHTML = html;
         return temp.removeChild(temp.firstElementChild);
-        //webpackJsonp[0][1][6298].toString(); is the way
+        //webpackJsonp[0][1][neededClasses[0]].toString(); is the way
     }
     const insertCss = (css) => {
         const style = document.createElement('style');
@@ -40,7 +87,6 @@
                #changeLogButtonClick:hover {color: #6b1ba7;}
         `);
     function parseAllClasses(){
-        let neededClasses = [6298, 6922, 860, 4886, 4887, 4888, 6921, 4880, 842, 4885, 333, 6979, 6345];
         for (var i = 0; i < neededClasses.length; i++) {
             let x = {};
             webpackJsonp[0][1][neededClasses[i]](x);
@@ -49,30 +95,30 @@
         console.log(allClasses);
     }
     window.onclick = () => {
-        let cont = document.getElementsByClassName(allClasses[6298].scroller);
+        let cont = document.getElementsByClassName(allClasses[neededClasses[0]].scroller);
         if(cont.length > 0 && !document.getElementById("status-picker-account")){
-            cont[0].appendChild(createElm(`<div role="separator" class="${allClasses[6298].separator}"></div>`));
-            let elmnt = createElm(`<div class="${allClasses[6298].item} ${allClasses[6298].colorDefault}" aria-disabled="false" role="menuitem" id="status-picker-account" tabindex="-1"><div class="${allClasses[6922].statusItem}" aria-label="Set a custom status"><div class="changeAccount customAccount"></div><div class="${allClasses[6922].status}">Change account</div></div></div>`);
+            cont[0].appendChild(createElm(`<div role="separator" class="${allClasses[neededClasses[0]].separator}"></div>`));
+            let elmnt = createElm(`<div class="${allClasses[neededClasses[0]].item} ${allClasses[neededClasses[0]].colorDefault}" aria-disabled="false" role="menuitem" id="status-picker-account" tabindex="-1"><div class="${allClasses[neededClasses[1]].statusItem}" aria-label="Set a custom status"><div class="changeAccount customAccount"></div><div class="${allClasses[neededClasses[1]].status}">Change account</div></div></div>`);
             elmnt.onmouseover = () => {
-                let allElmnts = document.getElementsByClassName(allClasses[6298].item);
+                let allElmnts = document.getElementsByClassName(allClasses[neededClasses[0]].item);
                 for (var i = 0; i < allElmnts.length; i++) {
-                    allElmnts[i].classList.remove(allClasses[6298].focused);
+                    allElmnts[i].classList.remove(allClasses[neededClasses[0]].focused);
                 }
-                elmnt.classList.add(allClasses[6298].focused);
+                elmnt.classList.add(allClasses[neededClasses[0]].focused);
             }
             elmnt.onmouseleave = () => {
-                let allElmnts = document.getElementsByClassName(allClasses[6298].item);
+                let allElmnts = document.getElementsByClassName(allClasses[neededClasses[0]].item);
                 for (var i = 0; i < allElmnts.length; i++) {
-                    allElmnts[i].classList.remove(allClasses[6298].focused);
+                    allElmnts[i].classList.remove(allClasses[neededClasses[0]].focused);
                 }
             }
             elmnt.onclick = openPicker;
             cont[0].appendChild(elmnt);
         }
         if(localStorage.versionMA != v && !document.getElementsByClassName("versionNotifier")[0]){
-            let baseElement = document.getElementsByClassName(allClasses[6979].base);
+            let baseElement = document.getElementsByClassName(allClasses[neededClasses[11]].base);
             if(baseElement[0]){
-                baseElement[0].prepend(createElm(`<div class="${allClasses[6345].notice} ${allClasses[6345].colorDefault} versionNotifier"><div class="${allClasses[6345].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} was fixed!<button id="changeLogButtonClick" class="${allClasses[6345].button}">View changes</button></div>`));
+                baseElement[0].prepend(createElm(`<div class="${allClasses[neededClasses[12]].notice} ${allClasses[neededClasses[12]].colorDefault} versionNotifier"><div class="${allClasses[neededClasses[12]].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} brings more stability!<button id="changeLogButtonClick" class="${allClasses[neededClasses[12]].button}">View changes</button></div>`));
                 document.getElementById("changeLogButtonClick").onclick = () => {
                     window.open("https://github.com/cazeip/MultipleAccounts/blob/master/changes.md");
                     document.getElementsByClassName("versionNotifier")[0].remove();
@@ -169,14 +215,14 @@
         }
         let info = JSON.parse(localStorage.getItem("multipleAccounts"));
         if(document.getElementById("accountPickerModal")) return;
-        let a = document.getElementsByClassName(allClasses[860].layerContainer);
-        let y = createElm(`<div id="accountPickerBg" class="${allClasses[4886].backdropWithLayer}" style="opacity: 0; background-color: rgb(0, 0, 0); transform: translateZ(0px);transition: opacity 0.2s;"></div>`);
+        let a = document.getElementsByClassName(allClasses[neededClasses[2]].layerContainer);
+        let y = createElm(`<div id="accountPickerBg" class="${allClasses[neededClasses[3]].backdropWithLayer}" style="opacity: 0; background-color: rgb(0, 0, 0); transform: translateZ(0px);transition: opacity 0.2s;"></div>`);
         y.onclick = closePicker;
         a[a.length - 1].appendChild(y);
-        let x = createElm(`<div class="${allClasses[4887].layer}" id="accountPickerModal"> <div class="${allClasses[4888].focusLock}" role="dialog" aria-label="Set a custom status" tabindex="-1" aria-modal="true"> <div class="${allClasses[6921].modalRoot} ${allClasses[4888].root} ${allClasses[4888].small} ${allClasses[4888].fullscreenOnMobile}" id="animatedModal" style="opacity: 0;transform: scale(0.2);transition: transform .2s, opacity .2s;"> <div class="${allClasses[4880].flex} ${allClasses[4880]._horizontal} ${allClasses[842].justifyStart} ${allClasses[842].alignCenter} ${allClasses[842].noWrap} ${allClasses[4888].header} ${allClasses[6921].headerContainer}" id="replaceBackground" style="flex: 0 0 auto;background-position: bottom;background-size: cover;background-image: url(https://cdn.discordapp.com/attachments/768475463524941865/768481090087944233/pawel-nolbert-4u2U8EO9OzY-unsplash.jpg);padding: 30px;"> <div class="${allClasses[6921].header}" style="padding-top: 0;"><h4 class="${allClasses[6921].headerText}">Choose a Discord account</h4></div><button id="closeXbutton" aria-label="Close" type="button" class="${allClasses[4888].close} ${allClasses[6921].modalCloseButton} ${allClasses[4885].button} ${allClasses[4885].lookBlank} ${allClasses[4885].colorBrand} ${allClasses[4885].grow}"> <div class="${allClasses[4885].contents}"> <svg aria-hidden="false" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z"></path></svg> </div></button> </div><div id="accountLinesContainer" class="${allClasses[4888].content} ${allClasses[333].thin}" dir="ltr" style="overflow: hidden scroll; padding-right: 8px; padding-top: 10px;"></div><span id="addAccount">Not seeing your account? Click here to add one.</span></div></div></div>`);
+        let x = createElm(`<div class="${allClasses[neededClasses[4]].layer}" id="accountPickerModal"> <div class="${allClasses[neededClasses[5]].focusLock}" role="dialog" aria-label="Set a custom status" tabindex="-1" aria-modal="true"> <div class="${allClasses[neededClasses[6]].modalRoot} ${allClasses[neededClasses[5]].root} ${allClasses[neededClasses[5]].small} ${allClasses[neededClasses[5]].fullscreenOnMobile}" id="animatedModal" style="opacity: 0;transform: scale(0.2);transition: transform .2s, opacity .2s;"> <div class="${allClasses[neededClasses[7]].flex} ${allClasses[neededClasses[7]]._horizontal} ${allClasses[neededClasses[8]].justifyStart} ${allClasses[neededClasses[8]].alignCenter} ${allClasses[neededClasses[8]].noWrap} ${allClasses[neededClasses[5]].header} ${allClasses[neededClasses[6]].headerContainer}" id="replaceBackground" style="flex: 0 0 auto;background-position: bottom;background-size: cover;background-image: url(https://cdn.discordapp.com/attachments/768475463524941865/768481090087944233/pawel-nolbert-4u2U8EO9OzY-unsplash.jpg);padding: 30px;"> <div class="${allClasses[neededClasses[6]].header}" style="padding-top: 0;"><h4 class="${allClasses[neededClasses[6]].headerText}">Choose a Discord account</h4></div><button id="closeXbutton" aria-label="Close" type="button" class="${allClasses[neededClasses[5]].close} ${allClasses[neededClasses[6]].modalCloseButton} ${allClasses[neededClasses[9]].button} ${allClasses[neededClasses[9]].lookBlank} ${allClasses[neededClasses[9]].colorBrand} ${allClasses[neededClasses[9]].grow}"> <div class="${allClasses[neededClasses[9]].contents}"> <svg aria-hidden="false" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z"></path></svg> </div></button> </div><div id="accountLinesContainer" class="${allClasses[neededClasses[5]].content} ${allClasses[neededClasses[10]].thin}" dir="ltr" style="overflow: hidden scroll; padding-right: 8px; padding-top: 10px;"></div><span id="addAccount">Not seeing your account? Click here to add one.</span></div></div></div>`);
         a[a.length - 1].appendChild(x);
         document.getElementById("closeXbutton").onclick = closePicker;
-        document.getElementsByClassName(allClasses[860].layer)[0].style.display = "none";
+        document.getElementsByClassName(allClasses[neededClasses[2]].layer)[0].style.display = "none";
         document.getElementById("addAccount").onclick = () => {
             changeAccount("--[LogIn]--");
         }
