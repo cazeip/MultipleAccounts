@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord user login
 // @namespace    http://cazeip.github.io/
-// @version      1.3
+// @version      1.4
 // @description  Login into multiple accounts with Discord!
 // @author       Cazeip
 // @match        https://discord.com/*
@@ -11,7 +11,7 @@
 
 (function() {
     'use strict';
-    const v = "1.3";
+    const v = "1.4";
     const apiPrefix = "https://discord.com/api/v8";
     let neededClasses = [];  
     let functionKeeper = webpackJsonp[0][1];
@@ -44,7 +44,6 @@
             ans = ans.exports;
             if(ans != undefined || ans != null){
                 ans = Object.keys(ans);
-                ans.sort();
                 let a = new Set(ans);
                 for (let j = 0; j < ccSet.length; j++) {
                     const element2 = ccSet[j];
@@ -118,7 +117,7 @@
         if(localStorage.versionMA != v && !document.getElementsByClassName("versionNotifier")[0]){
             let baseElement = document.getElementsByClassName(allClasses[neededClasses[11]].base);
             if(baseElement[0]){
-                baseElement[0].prepend(createElm(`<div class="${allClasses[neededClasses[12]].notice} ${allClasses[neededClasses[12]].colorDefault} versionNotifier"><div class="${allClasses[neededClasses[12]].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} brings more stability!<button id="changeLogButtonClick" class="${allClasses[neededClasses[12]].button}">View changes</button></div>`));
+                baseElement[0].prepend(createElm(`<div class="${allClasses[neededClasses[12]].notice} ${allClasses[neededClasses[12]].colorDefault} versionNotifier"><div class="${allClasses[neededClasses[12]].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} smoothens the experience!<button id="changeLogButtonClick" class="${allClasses[neededClasses[12]].button}">View changes</button></div>`));
                 document.getElementById("changeLogButtonClick").onclick = () => {
                     window.open("https://github.com/cazeip/MultipleAccounts/blob/master/changes.md");
                     document.getElementsByClassName("versionNotifier")[0].remove();
