@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord user login
 // @namespace    http://cazeip.github.io/
-// @version      1.4
+// @version      1.5
 // @description  Login into multiple accounts with Discord!
 // @author       Cazeip
 // @match        https://discord.com/*
@@ -11,7 +11,7 @@
 
 (function() {
     'use strict';
-    const v = "1.4";
+    const v = "1.5";
     const apiPrefix = "https://discord.com/api/v8";
     let neededClasses = [];  
     let functionKeeper = webpackJsonp[0][1];
@@ -77,7 +77,7 @@
                .accountChooserContainer {display: flex;height: 70px;}
                .accountChooserAvatar {border-radius: 50%; align-self: center;height: 80%;}
                .accountName {align-self: center;font-size: x-large;font-weight: 400;color: var(--interactive-active);}
-               .accountLogin {margin-left: auto;align-self: center;padding: 8px 20px;background-color: #43b581;font-weight: 900;color: #fff;}
+               .accountLogin {margin-left: auto;align-self: center;padding: 8px 20px;background-color: #43b581;font-weight: 900;color: #fff;border-radius: 5px;}
                .accountLogin:hover {background-color: #3ca374;}
                .accountDiscriminator{align-self: center;margin-top: 7px;color: var(--header-secondary);}
                #addAccount{margin-left: auto;margin: 10px auto;color: var(--header-secondary);cursor: pointer;}
@@ -117,7 +117,7 @@
         if(localStorage.versionMA != v && !document.getElementsByClassName("versionNotifier")[0]){
             let baseElement = document.getElementsByClassName(allClasses[neededClasses[11]].base);
             if(baseElement[0]){
-                baseElement[0].prepend(createElm(`<div class="${allClasses[neededClasses[12]].notice} ${allClasses[neededClasses[12]].colorDefault} versionNotifier"><div class="${allClasses[neededClasses[12]].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} smoothens the experience!<button id="changeLogButtonClick" class="${allClasses[neededClasses[12]].button}">View changes</button></div>`));
+                baseElement[0].prepend(createElm(`<div class="${allClasses[neededClasses[12]].notice} ${allClasses[neededClasses[12]].colorDefault} versionNotifier"><div class="${allClasses[neededClasses[12]].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} makes corners rounder!<button id="changeLogButtonClick" class="${allClasses[neededClasses[12]].button}">View changes</button></div>`));
                 document.getElementById("changeLogButtonClick").onclick = () => {
                     window.open("https://github.com/cazeip/MultipleAccounts/blob/master/changes.md");
                     document.getElementsByClassName("versionNotifier")[0].remove();
