@@ -1,0 +1,16 @@
+.scroller-3BxosC       is the container of any Button or <hr> in the little button that pops up when you click on your profile pic at the bottom
+
+.item-1tOPte           selects all button on this lil pop up
+
+.focused-3afm-j        if the class that is added to any selected .item-1tOPte
+
+.layer-v9HyYc          is one of the last parent of .scroller-3BxosC
+
+.layerContainer-yqaFcK is what contains any modal, as there may be more than one, always target the last one.
+
+
+.scroller-3BxosC         =>  6298.scroller
+.item-1tOPte             =>  6298.item
+.focused-3afm-j          =>  6298.focused
+.layer-v9HyYc            =>  860.layer
+.layerContainer-yqaFcK   =>  860.layerContainer
