@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord user login
 // @namespace    http://cazeip.github.io/
-// @version      1.6
+// @version      1.7
 // @description  Login into multiple accounts with Discord!
 // @author       Cazeip
 // @match        https://discord.com/*
@@ -11,19 +11,20 @@
 
 (function() {
     'use strict';
-    const v = "1.6";
+    const v = "1.7";
     const apiPrefix = "https://discord.com/api/v8";
     let neededClasses = [];  
     let functionKeeper = webpackJsonp[0][1];
-        
+    
+    // When you change something here, please make sure that you do actually verify if it's being used in some other place.
     let classesContain = [
         ["menu","scroller","styleFixed","styleFlexible","item","hideInteraction","customItem","labelContainer","label","subtext","iconContainer","icon","hintContainer","imageContainer","caret","image","disabled","separator","submenuContainer","submenuPaddingContainer","submenu","colorDefault","checkbox","radioSelection","check","focused","colorBrand","colorDanger","colorPremium","groupLabel"],
         ["statusItem","status","icon","description","customStatusItem","customStatusWithEmoji","customEmoji","customEmojiPlaceholder","customText","clearStatusButton","clearStatusIcon"],
         ["layerContainer","layer","layerHidden","disabledPointerEvents"],
-        ["backdrop","backdropWithLayer"],
+        ["backdrop","withLayer"],
         ["backdrop","layer"],
         ["responsiveWidthMobile","innerPadding","focusLock","root","small","medium","large","fullscreenOnMobile","footer","header","separator","content","close","hideOnFullscreen"],
-        ["artHeight","emojiSize","emojiMargin","formGroup","modalRoot","inputContainer","modalCloseButton","headerText","emojiButton","fullOpacity","emojiButtonContainer","emoji","input","clearButton","clearIcon","headerContainer","header","art","cancelButton"],
+        ["artHeight","emojiSize","emojiMargin","formGroup","formDivider","modalRoot","inputContainer","modalCloseButton","headerText","emojiButton","fullOpacity","emojiButtonContainer","emoji","input","clearButton","clearIcon","headerContainer","header","art","cancelButton","statusOptionItem","statusIcon"],
         ["_flex","_horizontal","_horizontalReverse","flex","horizontal","horizontalReverse","flexChild","flexMarginReset"],
         ["flex","alignStart","alignEnd","alignCenter","alignStretch","alignBaseline","justifyStart","justifyEnd","justifyCenter","justifyAround","justifyBetween","noWrap","wrap","wrapReverse","directionRow","directionRowReverse","directionColumn","spacer","vertical","horizontal","horizontalReverse","flexCenter"],
         ["button","lookFilled","colorBrand","spinnerItem","lookInverted","lookOutlined","lookGhost","lookLink","contents","hoverBrand","hasHover","colorGrey","hoverGrey","colorRed","hoverRed","colorGreen","hoverGreen","colorYellow","hoverYellow","colorLink","hoverLink","colorWhite","hoverWhite","colorBlack","hoverBlack","colorPrimary","hoverPrimary","colorTransparent","hoverTransparent","lookBlank","sizeTiny","sizeSmall","sizeMedium","sizeLarge","sizeXlarge","sizeMin","sizeMax","sizeIcon","grow","fullWidth","submitting","spinner","disabledButtonWrapper","disabledButtonOverlay"],
@@ -117,7 +118,7 @@
         if(localStorage.versionMA != v && !document.getElementsByClassName("versionNotifier")[0]){
             let baseElement = document.getElementsByClassName(allClasses[neededClasses[11]].base);
             if(baseElement[0]){
-                baseElement[0].prepend(createElm(`<div class="${allClasses[neededClasses[12]].notice} ${allClasses[neededClasses[12]].colorDefault} versionNotifier"><div class="${allClasses[neededClasses[12]].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} makes corners rounder!<button id="changeLogButtonClick" class="${allClasses[neededClasses[12]].button}">View changes</button></div>`));
+                baseElement[0].prepend(createElm(`<div class="${allClasses[neededClasses[12]].notice} ${allClasses[neededClasses[12]].colorDefault} versionNotifier"><div class="${allClasses[neededClasses[12]].closeButton}" id="versionNotifierCloseButton" aria-label="Dismiss" role="button" tabindex="0"></div>Multiple Discord Accounts ${v} fixes some actual bugs!<button id="changeLogButtonClick" class="${allClasses[neededClasses[12]].button}">View changes</button></div>`));
                 document.getElementById("changeLogButtonClick").onclick = () => {
                     window.open("https://github.com/cazeip/MultipleAccounts/blob/master/changes.md");
                     document.getElementsByClassName("versionNotifier")[0].remove();
@@ -215,7 +216,7 @@
         let info = JSON.parse(localStorage.getItem("multipleAccounts"));
         if(document.getElementById("accountPickerModal")) return;
         let a = document.getElementsByClassName(allClasses[neededClasses[2]].layerContainer);
-        let y = createElm(`<div id="accountPickerBg" class="${allClasses[neededClasses[3]].backdropWithLayer}" style="opacity: 0; background-color: rgb(0, 0, 0); transform: translateZ(0px);transition: opacity 0.2s;"></div>`);
+        let y = createElm(`<div id="accountPickerBg" class="${allClasses[neededClasses[3]].withLayer}" style="opacity: 0; background-color: rgb(0, 0, 0); transform: translateZ(0px);transition: opacity 0.2s;pointer-events:all;height:100%;"></div>`);
         y.onclick = closePicker;
         a[a.length - 1].appendChild(y);
         let x = createElm(`<div class="${allClasses[neededClasses[4]].layer}" id="accountPickerModal"> <div class="${allClasses[neededClasses[5]].focusLock}" role="dialog" aria-label="Set a custom status" tabindex="-1" aria-modal="true"> <div class="${allClasses[neededClasses[6]].modalRoot} ${allClasses[neededClasses[5]].root} ${allClasses[neededClasses[5]].small} ${allClasses[neededClasses[5]].fullscreenOnMobile}" id="animatedModal" style="opacity: 0;transform: scale(0.2);transition: transform .2s, opacity .2s;"> <div class="${allClasses[neededClasses[7]].flex} ${allClasses[neededClasses[7]]._horizontal} ${allClasses[neededClasses[8]].justifyStart} ${allClasses[neededClasses[8]].alignCenter} ${allClasses[neededClasses[8]].noWrap} ${allClasses[neededClasses[5]].header} ${allClasses[neededClasses[6]].headerContainer}" id="replaceBackground" style="flex: 0 0 auto;background-position: bottom;background-size: cover;background-image: url(https://cdn.discordapp.com/attachments/768475463524941865/768481090087944233/pawel-nolbert-4u2U8EO9OzY-unsplash.jpg);padding: 30px;"> <div class="${allClasses[neededClasses[6]].header}" style="padding-top: 0;"><h4 class="${allClasses[neededClasses[6]].headerText}">Choose a Discord account</h4></div><button id="closeXbutton" aria-label="Close" type="button" class="${allClasses[neededClasses[5]].close} ${allClasses[neededClasses[6]].modalCloseButton} ${allClasses[neededClasses[9]].button} ${allClasses[neededClasses[9]].lookBlank} ${allClasses[neededClasses[9]].colorBrand} ${allClasses[neededClasses[9]].grow}"> <div class="${allClasses[neededClasses[9]].contents}"> <svg aria-hidden="false" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z"></path></svg> </div></button> </div><div id="accountLinesContainer" class="${allClasses[neededClasses[5]].content} ${allClasses[neededClasses[10]].thin}" dir="ltr" style="overflow: hidden scroll; padding-right: 8px; padding-top: 10px;"></div><span id="addAccount">Not seeing your account? Click here to add one.</span></div></div></div>`);
