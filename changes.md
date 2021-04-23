@@ -1,7 +1,7 @@
 Changes to the MultipleAccounts Tampermonkey Script
 ===
 
-This version (1.7) makes it useable again. Sorry for the inconvenience!
+This version (1.7.1) makes it useable again. Sorry for the inconvenience!
 
 I thank you for using this script, and I hope to see you here when I release a new version, don't worry, you will be notified as soon as a new version is installed on your browser.
 
