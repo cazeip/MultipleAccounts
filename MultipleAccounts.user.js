@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord user login
 // @namespace    http://cazeip.github.io/
-// @version      1.7.1
+// @version      1.7.2
 // @description  Login into multiple accounts with Discord!
 // @author       Cazeip
 // @match        https://discord.com/*
@@ -11,14 +11,14 @@
 
 (function() {
     'use strict';
-    const v = "1.7.1";
+    const v = "1.7.2";
     const apiPrefix = "https://discord.com/api/v8";
     let neededClasses = [];  
     let functionKeeper = webpackJsonp[0][1];
     
     // When you change something here, please make sure that you do actually verify if it's being used in some other place.
     let classesContain = [
-        ["menu","scroller","styleFixed","styleFlexible","item","hideInteraction","customItem","labelContainer","label","subtext","iconContainer","icon","hintContainer","imageContainer","caret","image","disabled","separator","submenuContainer","submenuPaddingContainer","submenu","colorDefault","checkbox","radioSelection","check","focused","colorBrand","colorDanger","colorPremium","groupLabel"],
+        ["menu","scroller","styleFixed","styleFlexible","item","hideInteraction","customItem","labelContainer","label","subtext","iconContainer","icon","hintContainer","imageContainer","caret","image","disabled","separator","submenuContainer","submenuPaddingContainer","submenu","colorDefault","checkbox","radioSelection","check","focused","colorBrand","colorDanger","colorPremium","colorGreen","groupLabel"],
         ["statusItem","status","icon","description","customStatusItem","customStatusWithEmoji","customEmoji","customEmojiPlaceholder","customText","clearStatusButton","clearStatusIcon"],
         ["layerContainer","layer","layerHidden","disabledPointerEvents"],
         ["backdrop","withLayer"],
