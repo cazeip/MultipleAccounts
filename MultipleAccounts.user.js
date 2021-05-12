@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord user login
 // @namespace    http://cazeip.github.io/
-// @version      1.7.3
+// @version      1.7.4
 // @description  Login into multiple accounts with Discord!
 // @author       Cazeip
 // @match        https://discord.com/*
@@ -11,7 +11,7 @@
 
 (function() {
     'use strict';
-    const v = "1.7.3";
+    const v = "1.7.4";
     const apiPrefix = "https://discord.com/api/v8";
     let neededClasses = [];  
     let functionKeeper = webpackJsonp[0][1];
@@ -24,10 +24,10 @@
         ["backdrop","withLayer"],
         ["backdrop","layer"],
         ["responsiveWidthMobile","innerPadding","focusLock","root","small","medium","large","fullscreenOnMobile","footer","header","separator","content","close","hideOnFullscreen"],
-        ["artHeight","emojiSize","emojiMargin","formGroup","formDivider","modalRoot","inputContainer","modalCloseButton","headerText","emojiButton","fullOpacity","emojiButtonContainer","emoji","input","clearButton","clearIcon","headerContainer","header","art","cancelButton","statusOptionItem","statusIcon"],
+        ["innerPadding","artHeight","modalSize","modalCloseButton","modalBody","formItemTitleSlim","modalContent","modalHeader","marginBottom","formItemTitle","headerText","headerDescription","flexGrow","cancelButton","art"],
         ["_flex","_horizontal","_horizontalReverse","flex","horizontal","horizontalReverse","flexChild","flexMarginReset"],
-        ["flex","alignStart","alignEnd","alignCenter","alignStretch","alignBaseline","justifyStart","justifyEnd","justifyCenter","justifyAround","justifyBetween","noWrap","wrap","wrapReverse","directionRow","directionRowReverse","directionColumn","spacer","vertical","horizontal","horizontalReverse","flexCenter"],
-        ["button","lookFilled","colorBrand","spinnerItem","lookInverted","lookOutlined","lookGhost","lookLink","contents","hoverBrand","hasHover","colorGrey","hoverGrey","colorRed","hoverRed","colorGreen","hoverGreen","colorYellow","hoverYellow","colorLink","hoverLink","colorWhite","hoverWhite","colorBlack","hoverBlack","colorPrimary","hoverPrimary","colorTransparent","hoverTransparent","lookBlank","sizeTiny","sizeSmall","sizeMedium","sizeLarge","sizeXlarge","sizeMin","sizeMax","sizeIcon","grow","fullWidth","submitting","spinner","disabledButtonWrapper","disabledButtonOverlay"],
+        ["flex","alignStart","alignEnd","alignCenter","alignStretch","alignBaseline","justifyStart","justifyEnd","justifyCenter","justifyAround","justifyBetween","noWrap","wrap","wrapReverse","directionRow","directionRowReverse","directionColumn","spacer","vertical","horizontal","horizontalReverse","flexCenter","streamerModeEnabled","streamerModeEnabledImage","streamerModeEnabledBtn","disabled"],
+        ["flex","button","lookFilled","colorBrand","spinnerItem","lookInverted","lookOutlined","lookLink","contents","hoverBrand","hasHover","colorRed","hoverRed","colorGreen","hoverGreen","colorYellow","hoverYellow","colorLink","hoverLink","colorWhite","hoverWhite","colorBlack","hoverBlack","colorGrey","hoverGrey","colorPrimary","hoverPrimary","colorTransparent","hoverTransparent","lookBlank","sizeTiny","sizeSmall","sizeMedium","sizeLarge","sizeXlarge","sizeMin","sizeMax","sizeIcon","grow","fullWidth","submitting","spinner","disabledButtonWrapper","disabledButtonOverlay"]
         ["scrollerBase","thin","fade","scrolling","auto","none","content","disableScrollAnchor"],
         ["container","downloadProgressCircle","guilds","base","sidebar","hidden","hasNotice","panels","content","activityPanel","hiddenOnMobileStore"],
         ["notice","colorDefault","button","colorNeutral","colorDownload","colorNotification","colorDark","colorPremium","colorPremiumTier1","colorPremiumTier2","colorInfo","colorSuccess","colorDanger","colorStreamerMode","colorSpotify","platformIcon","colorBrand","colorCustom","closeButton","buttonMinor"],
