@@ -1,4 +1,4 @@
-MultipleAccounts Tampermonkey script
+[Deprecated] MultipleAccounts Tampermonkey script
 ===
 How to install
 ---
