@@ -1,5 +1,10 @@
 [Deprecated] MultipleAccounts Tampermonkey script
 ===
+
+This script has been rendered essentially useless when Discord decided to implement a Multi-Account switching feature less than a year after I had published the first version.
+It was nonetheless fun and instructive to hack and put together a working solution for this problem that I had!
+
+
 How to install
 ---
 1. Install an extension for user scripting
